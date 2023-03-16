@@ -36,7 +36,7 @@ if(WINDOWS)
 endif()
 
 # Build Options
-set(RTMIDI_TARGETNAME_UNINSTALL "uninstall" CACHE STRING "Name of 'uninstall' build target")
+set(RTMIDI_TARGETNAME_MUNINSTALL "uninstall" CACHE STRING "Name of 'uninstall' build target")
 
 # API Options
 option(RTMIDI_API_JACK "Compile with JACK support." ${HAVE_JACK})
@@ -218,14 +218,14 @@ if (RTMIDI_BUILD_TESTING)
   add_executable(midiprobe  tests/midiprobe.cpp)
   add_executable(qmidiin    tests/qmidiin.cpp)
   add_executable(sysextest  tests/sysextest.cpp)
-  add_executable(apinames   tests/apinames.cpp)
+  add_executable(mapinames   tests/apinames.cpp)
   add_executable(testcapi   tests/testcapi.c)
   list(GET LIB_TARGETS 0 LIBRTMIDI)
-  set_target_properties(cmidiin midiclock midiout midiprobe qmidiin sysextest apinames testcapi
+  set_target_properties(cmidiin midiclock midiout midiprobe qmidiin sysextest mapinames testcapi
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY tests
                INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}
                LINK_LIBRARIES ${LIBRTMIDI})
-  add_test(NAME apinames COMMAND apinames)
+  add_test(NAME mapinames COMMAND apinames)
 endif()
 
 # Set standard installation directories.
@@ -271,7 +271,7 @@ configure_file(
     "${CMAKE_BINARY_DIR}/RtMidiConfigUninstall.cmake" @ONLY)
 
 # Create uninstall target.
-add_custom_target(${RTMIDI_TARGETNAME_UNINSTALL}
+add_custom_target(${RTMIDI_TARGETNAME_MUNINSTALL}
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_BINARY_DIR}/RtMidiConfigUninstall.cmake)
 
 install(
