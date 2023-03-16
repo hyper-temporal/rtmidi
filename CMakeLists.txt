@@ -36,7 +36,7 @@ if(WINDOWS)
 endif()
 
 # Build Options
-set(RTMIDI_TARGETNAME_MUNINSTALL "uninstall" CACHE STRING "Name of 'uninstall' build target")
+set(RTMIDI_TARGETNAME_MUNINSTALL "muninstall" CACHE STRING "Name of 'muninstall' build target")
 
 # API Options
 option(RTMIDI_API_JACK "Compile with JACK support." ${HAVE_JACK})
